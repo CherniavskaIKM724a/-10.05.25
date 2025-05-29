@@ -1,0 +1,60 @@
+#include <iostream>
+#include <string>
+#include <windows.h>
+using namespace std;
+
+class Student {
+    string name;
+    int age;
+    float average; //средний балл
+
+public:
+    // Конструктор по умолчанию
+    Student() {
+        name = "";
+        age = 0;
+        average = 0.0;
+    }
+
+    // Конструктор(с параметрами)
+    Student(string n, int a, float avg) {
+        name = n;
+        age = a;
+        average = avg;
+    }
+
+    // геттеры (получение значений)
+    int get_age() {return age;}
+    void set_average(float avg) {average = avg;}
+    float get_average() {return average;}
+
+    // сеттеры (запись значения)
+    void set_name(string n) {name = n;}
+    string get_name() {return name;}
+    void set_age(int a) {age = a;}
+
+
+    void show() {
+        cout << "Имя: " << name << endl;
+        cout << "Возраст: " << age << endl;
+        cout << "Средний балл: " << average << endl;
+    }
+};
+
+int main() {
+    SetConsoleCP(1251);            // +кириллица
+    SetConsoleOutputCP(1251);
+    Student s1("Иван Иванов", 20, 87.5);
+    s1.show();
+
+    s1.set_name("Петр Петров");  //меняем
+    s1.set_age(21);
+    s1.set_average(92.3);
+
+    cout << "\nНовая информация:" << endl;
+    cout << "Имя: " << s1.get_name() << endl;
+    cout << "Возраст: " << s1.get_age() << endl;
+    cout << "Средний балл: " << s1.get_average() << endl;
+
+    return 0;
+}
