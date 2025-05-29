@@ -1,0 +1,53 @@
+#include <iostream>
+#include <windows.h>
+using namespace std;
+
+class Book {
+    string title;   // Н-е
+    string author;
+    string genre;   // Жанр книги
+    int year;       // Год издания
+
+public:
+    // Конструктор(с параметрами)
+    Book(string t, string a, string g, int y) {
+        title = t;
+        author = a;
+        genre = g;
+        year = y;
+    }
+
+    // Геттеры (получение значений)
+    string getTitle() {return title;}
+    string getAuthor() {return author;}
+    string getGenre() {return genre;}
+    int getYear() {return year;}
+
+    // Сеттеры (инициализация)
+    void setTitle(string t) {title = t;}
+    void setAuthor(string a) {author = a;}
+    void setGenre(string g) {genre = g;}
+    void setYear(int y) {year = y;}
+
+    // вывод
+    void show() {
+        cout << "Название: " << title << endl;
+        cout << "Автор: " << author << endl;
+        cout << "Жанр: " << genre << endl;
+        cout << "Год издания: " << year << endl;
+    }
+};
+int main()
+{
+    SetConsoleCP(1251);            // +кириллица
+    SetConsoleOutputCP(1251);
+    Book book1("Война и мир", "Лев Толстой", "Роман", 1869);
+    book1.show();
+
+    //меняем
+    book1.setYear(1873);
+    cout << "\nПосле изменений:\n";
+    book1.show();
+
+    return 0;
+}
