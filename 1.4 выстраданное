@@ -1,0 +1,64 @@
+#include <iostream>
+#include <windows.h>
+using namespace std;
+
+class Vector {
+private:
+    double data[2];
+
+public:
+    Vector() { data[0]=0; data[1]=0; }
+    Vector(double x, double y) { data[0]=x; data[1]=y; }
+
+    double get(int i) const {return data[i];}
+    void show() const {cout << data[0] << " " << data[1] << endl;}
+};
+
+// Сумма
+Vector sum(const Vector& v1, const Vector& v2) {
+    return Vector(v1.get(0) + v2.get(0), v1.get(1) + v2.get(1));
+}
+
+// Разность
+Vector diff(const Vector& v1, const Vector& v2) {
+    return Vector(v1.get(0) - v2.get(0), v1.get(1) - v2.get(1));
+}
+
+// Умножение  на скаляр
+Vector mult(const Vector& v, double scalar) {
+    return Vector(v.get(0) * scalar, v.get(1) * scalar);
+}
+// Скалярное произведение
+double dotProduct(const Vector& v1, const Vector& v2) {
+    return v1.get(0) * v2.get(0) + v1.get(1) * v2.get(1);
+}
+int main() {
+    SetConsoleCP(1251);            // +кириллица
+    SetConsoleOutputCP(1251);
+    Vector v1(1, 2);
+    Vector v2(4, 5);
+    Vector v3(10, 20);
+
+    Vector v_sum = sum(v1, v2);
+    Vector v_diff = diff(v1, v2);
+    Vector v_mult = mult(v1, 3);
+
+    cout << "Сумма v1 и v2: ";
+    v_sum.show();
+
+    cout << "Разность v1 и v2: ";
+    v_diff.show();
+
+    cout << "v1 умножить на 3: ";
+    v_mult.show();
+
+    cout << "Сумма v2 и v3: ";
+    sum(v2, v3).show();
+
+    cout << "v3 умножить на -0.5: ";
+    mult(v3, -0.5).show();
+
+    double dp = dotProduct(v1, v2);
+    cout << "Скалярное произведение v1 и v2: " << dp << endl;
+    return 0;
+}
