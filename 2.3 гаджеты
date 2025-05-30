@@ -1,0 +1,65 @@
+#include <iostream>
+#include <string>
+#include <windows.h>
+using namespace std;
+
+// Гаджет
+class ElectronicDevice {
+protected:
+    string name;
+    double screenSize;
+public:
+    ElectronicDevice(string n, double s) {name=n;screenSize=s;}
+    string getName() { return name; }
+    double getScreenSize() { return screenSize; }
+};
+
+// Смартфон
+class Smartphone : public ElectronicDevice {
+private:
+    string osType;
+public:
+    Smartphone(string n, double s, string os) : ElectronicDevice(n, s){osType=os;}
+    void setOsType(string os) { osType = os; } // установка ОС
+    string getOsType() { return osType; }
+};
+
+// Планшет
+class Tablet : public ElectronicDevice {
+private:
+    string osType;
+public:
+    Tablet(string n, double s, string os) : ElectronicDevice(n, s) {osType=os;}
+    void setOsType(string os) { osType = os; } // установка ОС
+    string getOsType() { return osType; }
+};
+
+// Ноутбук
+class Laptop : public ElectronicDevice {
+private:
+    string osType;  // Тип операционной системы
+public:
+    Laptop(string n, double s, string os) : ElectronicDevice(n, s) {osType=os;}
+    void setOsType(string os) { osType = os; } // установка ОС
+    string getOsType() { return osType; }
+};
+
+int main() {
+    SetConsoleCP(1251);            // +кириллица
+    SetConsoleOutputCP(1251);
+    Smartphone phone("Samsung Galaxy", 6.5, "Android");
+    Tablet tablet("Apple iPad", 10.2, "iPadOS");
+    Laptop laptop("Lenovo IdeaPad", 15.6, "Windows");
+
+    cout << "Смартфон: " << phone.getName() << ", экран: " << phone.getScreenSize()
+         << " дюймов, ОС: " << phone.getOsType() << endl;
+    cout << "Планшет: " << tablet.getName() << ", экран: " << tablet.getScreenSize()
+         << " дюймов, ОС: " << tablet.getOsType() << endl;
+    cout << "Ноутбук: " << laptop.getName() << ", экран: " << laptop.getScreenSize()
+         << " дюймов, ОС: " << laptop.getOsType() << endl;
+    //перепрошили
+    phone.setOsType("iOS");
+    cout << "Смартфон после смены ОС: " << phone.getName() << ", ОС: " << phone.getOsType() << endl;
+
+    return 0;
+}
