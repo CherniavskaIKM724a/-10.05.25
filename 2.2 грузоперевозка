@@ -1,0 +1,64 @@
+#include <iostream>
+#include <windows.h>
+using namespace std;
+
+
+class Transport {
+protected:
+    double speed;      // скорость
+    double power;      // мощность двигателя (л.с.)
+public:
+    Transport(double s, double p) {speed=s; power=p;}
+    double getSpeed() { return speed; }
+    double getPower() { return power; }
+};
+
+// Легковое авто
+class Car : public Transport {
+public:
+    Car(double s, double p) : Transport(s, p) {}
+    double maxWeight() const {
+        return power * 15; // условно
+    }
+};
+
+// грузовое нечто
+class Truck : public Transport {
+public:
+    Truck(double s, double p) : Transport(s, p) {}
+    double maxWeight() const {
+        return power * 50; // 50 кг на 1 л.с.
+    }
+};
+
+// Класс "Мотоцикл"
+class Motorcycle : public Transport {
+public:
+    Motorcycle(double s, double p) : Transport(s, p) {}
+    double maxWeight() const {
+        return power * 5; // 5 кг на 1 л.с.
+    }
+};
+
+int main() {
+    SetConsoleCP(1251);            // +кириллица
+    SetConsoleOutputCP(1251);
+    Car car(180, 120);
+    Truck truck(100, 300);
+    Motorcycle moto(200, 80);
+
+    cout << "Легковое авто: скорость = " << car.getSpeed()
+         << " км/ч, мощность = " << car.getPower()
+         << " л.с., макс. вес = " << car.maxWeight() << " кг" << endl;
+
+    cout << "Грузое авто: скорость = " << truck.getSpeed()
+         << " км/ч, мощность = " << truck.getPower()
+         << " л.с., макс. вес = " << truck.maxWeight() << " кг" << endl;
+
+    cout << "Мотоцикл: скорость = " << moto.getSpeed()
+         << " км/ч, мощность = " << moto.getPower()
+         << " л.с., макс. вес = " << moto.maxWeight() << " кг" << endl;
+
+    return 0;
+}
+
