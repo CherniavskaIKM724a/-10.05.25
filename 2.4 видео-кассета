@@ -1,0 +1,72 @@
+#include <iostream>
+#include <string>
+#include <windows.h>
+using namespace std;
+
+// файл
+class File {
+protected:
+    string name;
+    int size;
+public:
+    File(string n, int s) {
+        name = n;   //  имя
+        size = s;   // размер
+    }
+    string getName() const { return name; }
+    int getSize() const { return size; }
+};
+
+// txt
+class TextFile : public File {
+public:
+    TextFile(string n, int s) : File(n, s) {}
+    // читаем
+    void read() const {
+        cout << "Чтение текстового файла: " << getName() << endl;
+    }
+    // запись
+    void write() const {
+        cout << "Запись в текстовый файл: " << getName() << endl;
+    }
+};
+
+// img
+class Image : public File {
+public:
+    Image(string n, int s) : File(n, s) {}
+    // показываем
+    void display() const {
+        cout << "Отображение изображения: " << getName() << endl;
+    }
+};
+
+// видео
+class Video : public File {
+public:
+    Video(string n, int s) : File(n, s) {}
+    // "вывод"
+    void play() const {
+        cout << "Воспроизведение видео: " << getName() << endl;
+    }
+};
+
+int main() {
+    SetConsoleCP(1251);            // +кириллица
+    SetConsoleOutputCP(1251);
+    TextFile text("document.txt", 1024);
+    Image img("photo.jpg", 2048);
+    Video video("movie.mp4", 1048576);
+
+    cout << "Текстовый файл: " << text.getName() << ", размер: " << text.getSize() << " байт" << endl;
+    text.read();
+    text.write();
+
+    cout << "Изображение: " << img.getName() << ", размер: " << img.getSize() << " байт" << endl;
+    img.display();
+
+    cout << "Видео: " << video.getName() << ", размер: " << video.getSize() << " байт" << endl;
+    video.play();
+
+    return 0;
+}
